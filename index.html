@@ -6,60 +6,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plan de Trabajo</title>
     <style>
-        :root {
-            --primary: #25D366;
-            /* WhatsApp Green */
-            --primary-dark: #128C7E;
-            --bg-color: #f0f2f5;
-            --card-bg: #ffffff;
-            --text-main: #111b21;
-            --text-muted: #667781;
-            --border: #d1d7db;
-            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-        }
-
         body {
-            background-color: var(--bg-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f6f8;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
+            margin: 0;
             padding: 20px;
-            color: var(--text-main);
+            box-sizing: border-box;
         }
 
         .container {
-            background-color: var(--card-bg);
-            border-radius: 12px;
-            box-shadow: var(--shadow);
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             padding: 40px;
             width: 100%;
-            max-width: 500px;
-            transition: transform 0.3s ease;
+            max-width: 450px;
         }
 
-        .container:hover {
-            transform: translateY(-2px);
-        }
-
-        h1 {
-            font-size: 24px;
-            margin-bottom: 8px;
-            color: var(--text-main);
+        .header {
             text-align: center;
-        }
-
-        p.subtitle {
-            text-align: center;
-            color: var(--text-muted);
             margin-bottom: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+            color: #1a202c;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 5px 0 0;
+            color: #718096;
             font-size: 14px;
         }
 
@@ -67,82 +48,86 @@
             margin-bottom: 20px;
         }
 
-        label {
+        .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-weight: 500;
+            color: #2d3748;
+            font-weight: 600;
             font-size: 14px;
         }
 
-        input[type="text"],
-        input[type="date"],
-        textarea {
+        .form-control {
             width: 100%;
             padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 8px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
             font-size: 15px;
-            transition: border-color 0.2s, box-shadow 0.2s;
-            background-color: #f9f9fa;
+            color: #4a5568;
+            box-sizing: border-box;
+            transition: border-color 0.2s;
         }
 
-        input[type="text"]:focus,
-        input[type="date"]:focus,
-        textarea:focus {
+        .form-control:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 211, 102, 0.2);
-            background-color: #fff;
+            border-color: #4299e1;
         }
 
-        textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .phone-input {
+        .time-group {
             display: flex;
-            gap: 10px;
+            gap: 15px;
+            margin-top: 15px;
         }
 
-        .phone-input .prefix {
-            width: 80px;
+        .time-group .time-input {
+            flex: 1;
         }
 
-        .phone-input .number {
-            flex-grow: 1;
+        .hidden {
+            display: none;
         }
 
-        button {
+        .btn-submit {
             width: 100%;
             padding: 14px;
-            background-color: var(--primary);
+            background-color: #28a745;
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 6px;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.2s, transform 0.1s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 8px;
+            transition: background-color 0.2s;
             margin-top: 10px;
         }
 
-        button:hover {
-            background-color: var(--primary-dark);
+        .btn-submit:hover {
+            background-color: #218838;
         }
 
-        button:active {
-            transform: scale(0.98);
+        .btn-submit:disabled {
+            background-color: #94d3a2;
+            cursor: not-allowed;
         }
 
-        button svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
+        .alert {
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 14px;
+            text-align: center;
+            display: none;
+        }
+
+        .alert.success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+
+        .alert.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
         }
     </style>
 </head>
@@ -150,129 +135,166 @@
 <body>
 
     <div class="container">
-        <h1>Plan de Trabajo</h1>
-        <p class="subtitle">Diligencia tus tareas y envíalas por WhatsApp</p>
-
-        <div class="form-group">
-            <label for="nombre">Tu Nombre</label>
-            <input type="text" id="nombre" placeholder="Ej: Juan Pérez" required>
+        <div class="header">
+            <h1>Plan de Trabajo</h1>
+            <p>Diligencia tus tareas y envíalas al registro</p>
         </div>
 
-        <div class="form-group">
-            <label for="fecha">Fecha del Plan</label>
-            <input type="date" id="fecha" required>
-        </div>
-
-        <div class="form-group">
-            <label for="tareas">Tareas / Actividades a realizar</label>
-            <textarea id="tareas"
-                placeholder="1. Revisar correos...&#10;2. Preparar informe...&#10;3. Reunión de equipo..."
-                required></textarea>
-        </div>
-
-        <div class="form-group">
-            <label>WhatsApp de tu Jefe</label>
-            <div class="phone-input">
-                <!-- Se asume código 57 de Colombia por defecto, el usuario puede cambiarlo -->
-                <input type="text" id="codigo_pais" class="prefix" placeholder="+57" value="57">
-                <input type="text" id="telefono_jefe" class="number" placeholder="3001234567" required>
+        <form id="workPlanForm">
+            <div class="form-group">
+                <label for="nombre">Tu Nombre</label>
+                <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Pérez" required>
             </div>
-            <small style="color: var(--text-muted); font-size: 12px; margin-top: 4px; display: block;">Sin el símbolo +
-                (Ej: 57 para Colombia, 52 para México, etc.)</small>
-        </div>
 
-        <button onclick="enviarWhatsApp()">
-            <svg viewBox="0 0 24 24">
-                <path
-                    d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z" />
-            </svg>
-            Enviar por WhatsApp
-        </button>
+            <div class="form-group">
+                <label for="fecha">Fecha del Plan</label>
+                <input type="date" id="fecha" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="actividad">Tareas / Actividades a realizar</label>
+                <select id="actividad" class="form-control" required>
+                    <option value="">Selecciona una actividad...</option>
+                    <option value="FINALIZACIÓN Y ENSAYO DE INFORME DE RESULTADO">Finalización y ensayo de informe de
+                        resultado</option>
+                    <option value="PRESENTACIÓN INFORME DE RESULTADO">Presentación informe de resultado</option>
+                    <option value="TABLERO DE PROPORCIÓN DE SALAS">Tablero de proporción de salas</option>
+                    <option value="ACTUALIZACIÓN DE BASES">Actualización de bases</option>
+                    <option value="otra">Otra</option>
+                </select>
+
+                <div id="otraActividadContainer" class="hidden" style="margin-top: 15px;">
+                    <label for="otraActividad">Escribe la actividad</label>
+                    <input type="text" id="otraActividad" class="form-control" placeholder="Describe la actividad">
+                </div>
+
+                <div id="timeContainer" class="time-group hidden">
+                    <div class="time-input">
+                        <label for="horaInicio">Hora de inicio</label>
+                        <input type="time" id="horaInicio" class="form-control">
+                    </div>
+                    <div class="time-input">
+                        <label for="horaFin">Hora de fin</label>
+                        <input type="time" id="horaFin" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit" id="submitBtn">Enviar a Google Drive</button>
+            <div id="message" class="alert"></div>
+        </form>
     </div>
 
     <script>
-        // Establecer la fecha actual por defecto
+        const actividadSelect = document.getElementById('actividad');
+        const otraActividadContainer = document.getElementById('otraActividadContainer');
+        const otraActividadInput = document.getElementById('otraActividad');
+        const timeContainer = document.getElementById('timeContainer');
+        const horaInicioInput = document.getElementById('horaInicio');
+        const horaFinInput = document.getElementById('horaFin');
+
+        // Configurar la fecha actual por defecto
         document.getElementById('fecha').valueAsDate = new Date();
 
-        // 1. DICCIONARIO DE ACTIVIDADES DIARIAS POR PERSONA
-        // Aquí puedes colocar tu nombre y las actividades que realizas a diario
-        const actividadesPredeterminadas = {
-            "santiago prias": "Revisión de correos y pendientes\nDesarrollo de requerimientos\nReuniones de seguimiento",
-            "juan": "Revisar correos y responder solicitudes\nRevisión de métricas diarias\nActualizar reporte de gestión",
-            "maria": "Llamadas a clientes\nRevisar inventario\nEnviar reporte de ventas",
-            "carlos": "Reunión de equipo\nRevisar código\nPlanificar sprints" 
-        };
-
-        // 2. DETECTAR CUANDO SE ESCRIBE EL NOMBRE PARA AUTO-COMPLETAR
-        document.getElementById('nombre').addEventListener('input', function() {
-            const nombre = this.value.trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-            const textareaTareas = document.getElementById('tareas');
-            
-            let encontrado = false;
-            for (const key in actividadesPredeterminadas) {
-                if (nombre.includes(key)) {
-                    // Reemplazamos si está vacío, si lo llenamos automáticamente antes, o si tiene el placeholder inicial por defecto
-                    if (textareaTareas.value === "" || textareaTareas.getAttribute("data-auto") === "true") {
-                        textareaTareas.value = actividadesPredeterminadas[key];
-                        textareaTareas.setAttribute("data-auto", "true");
-                    }
-                    encontrado = true;
-                    break;
-                }
+        actividadSelect.addEventListener('change', function () {
+            if (this.value !== "") {
+                timeContainer.classList.remove('hidden');
+                horaInicioInput.required = true;
+                horaFinInput.required = true;
+            } else {
+                timeContainer.classList.add('hidden');
+                horaInicioInput.required = false;
+                horaFinInput.required = false;
             }
-            
-            if (!encontrado && textareaTareas.getAttribute("data-auto") === "true") {
-                textareaTareas.value = "";
-                textareaTareas.removeAttribute("data-auto");
+
+            if (this.value === 'otra') {
+                otraActividadContainer.classList.remove('hidden');
+                otraActividadInput.required = true;
+            } else {
+                otraActividadContainer.classList.add('hidden');
+                otraActividadInput.required = false;
             }
         });
 
-        // 3. FUNCIÓN PARA CREAR UNA TABLA FORMATO WHATSAPP (Monoespaciada)
-        function crearTablaWhatsApp(tareasTexto) {
-            const lineas = tareasTexto.split('\n').filter(l => l.trim() !== '');
-            const anchoCol1 = 22; 
-            const anchoCol2 = 10;
-            
-            let tabla = "```\n"; 
-            tabla += "Actividad".padEnd(anchoCol1, ' ') + " | " + "Estado".padEnd(anchoCol2, ' ') + "\n";
-            tabla += "-".repeat(anchoCol1) + "-|-" + "-".repeat(anchoCol2) + "\n";
-            
-            lineas.forEach(linea => {
-                let texto = linea.replace(/^\d+[\.\-]?\s*|^-\s*/, '').trim(); 
-                if(texto.length > anchoCol1) {
-                    texto = texto.substring(0, anchoCol1 - 3) + "...";
-                }
-                tabla += texto.padEnd(anchoCol1, ' ') + " | " + "Pendiente".padEnd(anchoCol2, ' ') + "\n";
-            });
-            
-            tabla += "```";
-            return tabla;
+        // Formatear hora (de 24h a 12h AM/PM) para que coincida con el formato del Drive
+        function formatTime(timeStr) {
+            const [hours, minutes] = timeStr.split(':');
+            let h = parseInt(hours);
+            const ampm = h >= 12 ? 'P.m' : 'a.m';
+            h = h % 12;
+            h = h ? h : 12;
+            return `${h}:${minutes} ${ampm}`;
         }
 
-        function enviarWhatsApp() {
-            const nombre = document.getElementById('nombre').value.trim();
-            const fecha = document.getElementById('fecha').value;
-            const tareas = document.getElementById('tareas').value.trim();
-            let codigo_pais = document.getElementById('codigo_pais').value.trim().replace('+', '');
-            let telefono = document.getElementById('telefono_jefe').value.trim();
+        // Formatear fecha a DD-MM-YYYY
+        function formatDate(dateStr) {
+            const [year, month, day] = dateStr.split('-');
+            return `${day}-${month}-${year}`;
+        }
 
-            if (!nombre || !fecha || !tareas || !telefono) {
-                alert("Por favor, completa todos los campos antes de enviar.");
-                return;
+        document.getElementById('workPlanForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            const messageDiv = document.getElementById('message');
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            messageDiv.className = 'alert';
+            messageDiv.textContent = '';
+
+            const nombre = document.getElementById('nombre').value;
+            const fechaRaw = document.getElementById('fecha').value;
+            const fecha = formatDate(fechaRaw);
+
+            let actividad = actividadSelect.value;
+            if (actividad === 'otra') {
+                actividad = otraActividadInput.value.toUpperCase(); // En mayúscula como en la imagen
             }
 
-            telefono = telefono.replace(/\D/g, '');
-            codigo_pais = codigo_pais.replace(/\D/g, '');
+            const horaInicio = document.getElementById('horaInicio').value;
+            const horaFin = document.getElementById('horaFin').value;
+            const horaFormateada = `${formatTime(horaInicio)} - ${formatTime(horaFin)}`;
 
-            const numeroCompleto = codigo_pais + telefono;
-            const tablaTareas = crearTablaWhatsApp(tareas);
+            // Crear objeto de datos para enviar
+            const data = {
+                fecha: fecha,
+                hora: horaFormateada,
+                descripcion: actividad,
+                responsable: nombre.toUpperCase(),
+                cumplimiento: false, // Checkbox desmarcado por defecto
+                obs: ""
+            };
 
-            const mensaje = `*PLAN DE TRABAJO* 📋\n\n*👨‍💻 Nombre:* ${nombre}\n*📅 Fecha:* ${fecha}\n\n*✅ Actividades a realizar:*\n${tablaTareas}\n\n_Enviado desde mi portal web._`;
-            const textoCodificado = encodeURIComponent(mensaje);
-            const urlWhatsApp = `https://wa.me/${numeroCompleto}?text=${textoCodificado}`;
+            // REEMPLAZAR ESTA URL CON LA URL DE TU WEB APP DE GOOGLE APPS SCRIPT
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbyJSGLnMjwy4sP5aKf4pHhWmvm9zBoovz4B6EXYu8uV3zVJUQVOUSV-1Sxv7SpxJMCI/exec';
 
-            window.open(urlWhatsApp, '_blank');
-        }
+            fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Evita errores de CORS
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+                .then(() => {
+                    messageDiv.textContent = '¡Actividad registrada exitosamente!';
+                    messageDiv.className = 'alert success';
+                    document.getElementById('workPlanForm').reset();
+                    document.getElementById('fecha').valueAsDate = new Date();
+                    timeContainer.classList.add('hidden');
+                    otraActividadContainer.classList.add('hidden');
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    messageDiv.textContent = 'Hubo un error al enviar. Por favor intenta de nuevo.';
+                    messageDiv.className = 'alert error';
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar a Google Drive';
+                });
+        });
     </script>
 </body>
 
